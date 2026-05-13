@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PredictionsRouteImport } from './routes/predictions'
 import { Route as PatientsRouteImport } from './routes/patients'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as EcgRouteImport } from './routes/ecg'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PredictionsRoute = PredictionsRouteImport.update({
+  id: '/predictions',
+  path: '/predictions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PatientsRoute = PatientsRouteImport.update({
   id: '/patients',
   path: '/patients',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/ecg': typeof EcgRoute
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
+  '/predictions': typeof PredictionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/ecg': typeof EcgRoute
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
+  '/predictions': typeof PredictionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,27 @@ export interface FileRoutesById {
   '/ecg': typeof EcgRoute
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
+  '/predictions': typeof PredictionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/ecg' | '/login' | '/patients'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/ecg'
+    | '/login'
+    | '/patients'
+    | '/predictions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/ecg' | '/login' | '/patients'
-  id: '__root__' | '/' | '/dashboard' | '/ecg' | '/login' | '/patients'
+  to: '/' | '/dashboard' | '/ecg' | '/login' | '/patients' | '/predictions'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/ecg'
+    | '/login'
+    | '/patients'
+    | '/predictions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +99,18 @@ export interface RootRouteChildren {
   EcgRoute: typeof EcgRoute
   LoginRoute: typeof LoginRoute
   PatientsRoute: typeof PatientsRoute
+  PredictionsRoute: typeof PredictionsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/predictions': {
+      id: '/predictions'
+      path: '/predictions'
+      fullPath: '/predictions'
+      preLoaderRoute: typeof PredictionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/patients': {
       id: '/patients'
       path: '/patients'
@@ -125,6 +155,7 @@ const rootRouteChildren: RootRouteChildren = {
   EcgRoute: EcgRoute,
   LoginRoute: LoginRoute,
   PatientsRoute: PatientsRoute,
+  PredictionsRoute: PredictionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
