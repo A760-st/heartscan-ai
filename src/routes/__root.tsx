@@ -81,6 +81,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "CardioPredict — ECG Heart Disease Prediction" },
+      { name: "twitter:description", content: "AI-powered ECG analytics with full MySQL DBMS integration." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4f0f872b-4a39-4f52-a1be-a41487023e9d/id-preview-bc25c324--a423cb96-bcbe-4188-a3f8-f459ca1b2c60.lovable.app-1778635712723.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4f0f872b-4a39-4f52-a1be-a41487023e9d/id-preview-bc25c324--a423cb96-bcbe-4188-a3f8-f459ca1b2c60.lovable.app-1778635712723.png" },
     ],
     links: [
       {
