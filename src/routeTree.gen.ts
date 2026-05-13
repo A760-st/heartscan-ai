@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PatientsRouteImport } from './routes/patients'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as EcgRouteImport } from './routes/ecg'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const PatientsRoute = PatientsRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcgRoute = EcgRouteImport.update({
+  id: '/ecg',
+  path: '/ecg',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/ecg': typeof EcgRoute
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/ecg': typeof EcgRoute
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/ecg': typeof EcgRoute
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/login' | '/patients'
+  fullPaths: '/' | '/dashboard' | '/ecg' | '/login' | '/patients'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/login' | '/patients'
-  id: '__root__' | '/' | '/dashboard' | '/login' | '/patients'
+  to: '/' | '/dashboard' | '/ecg' | '/login' | '/patients'
+  id: '__root__' | '/' | '/dashboard' | '/ecg' | '/login' | '/patients'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
+  EcgRoute: typeof EcgRoute
   LoginRoute: typeof LoginRoute
   PatientsRoute: typeof PatientsRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecg': {
+      id: '/ecg'
+      path: '/ecg'
+      fullPath: '/ecg'
+      preLoaderRoute: typeof EcgRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
+  EcgRoute: EcgRoute,
   LoginRoute: LoginRoute,
   PatientsRoute: PatientsRoute,
 }
