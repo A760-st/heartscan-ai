@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SqlQueriesRouteImport } from './routes/sql-queries'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as PredictionsRouteImport } from './routes/predictions'
 import { Route as PatientsRouteImport } from './routes/patients'
 import { Route as LoginRouteImport } from './routes/login'
@@ -20,6 +21,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const SqlQueriesRoute = SqlQueriesRouteImport.update({
   id: '/sql-queries',
   path: '/sql-queries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PredictionsRoute = PredictionsRouteImport.update({
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
   '/predictions': typeof PredictionsRoute
+  '/reports': typeof ReportsRoute
   '/sql-queries': typeof SqlQueriesRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
   '/predictions': typeof PredictionsRoute
+  '/reports': typeof ReportsRoute
   '/sql-queries': typeof SqlQueriesRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
   '/predictions': typeof PredictionsRoute
+  '/reports': typeof ReportsRoute
   '/sql-queries': typeof SqlQueriesRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/patients'
     | '/predictions'
+    | '/reports'
     | '/sql-queries'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/patients'
     | '/predictions'
+    | '/reports'
     | '/sql-queries'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/patients'
     | '/predictions'
+    | '/reports'
     | '/sql-queries'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PatientsRoute: typeof PatientsRoute
   PredictionsRoute: typeof PredictionsRoute
+  ReportsRoute: typeof ReportsRoute
   SqlQueriesRoute: typeof SqlQueriesRoute
 }
 
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/sql-queries'
       fullPath: '/sql-queries'
       preLoaderRoute: typeof SqlQueriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/predictions': {
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PatientsRoute: PatientsRoute,
   PredictionsRoute: PredictionsRoute,
+  ReportsRoute: ReportsRoute,
   SqlQueriesRoute: SqlQueriesRoute,
 }
 export const routeTree = rootRouteImport
