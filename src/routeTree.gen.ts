@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SqlQueriesRouteImport } from './routes/sql-queries'
 import { Route as PredictionsRouteImport } from './routes/predictions'
 import { Route as PatientsRouteImport } from './routes/patients'
 import { Route as LoginRouteImport } from './routes/login'
@@ -16,6 +17,11 @@ import { Route as EcgRouteImport } from './routes/ecg'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SqlQueriesRoute = SqlQueriesRouteImport.update({
+  id: '/sql-queries',
+  path: '/sql-queries',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PredictionsRoute = PredictionsRouteImport.update({
   id: '/predictions',
   path: '/predictions',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
   '/predictions': typeof PredictionsRoute
+  '/sql-queries': typeof SqlQueriesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
   '/predictions': typeof PredictionsRoute
+  '/sql-queries': typeof SqlQueriesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/patients': typeof PatientsRoute
   '/predictions': typeof PredictionsRoute
+  '/sql-queries': typeof SqlQueriesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +90,16 @@ export interface FileRouteTypes {
     | '/login'
     | '/patients'
     | '/predictions'
+    | '/sql-queries'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/ecg' | '/login' | '/patients' | '/predictions'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/ecg'
+    | '/login'
+    | '/patients'
+    | '/predictions'
+    | '/sql-queries'
   id:
     | '__root__'
     | '/'
@@ -91,6 +108,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/patients'
     | '/predictions'
+    | '/sql-queries'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,10 +118,18 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PatientsRoute: typeof PatientsRoute
   PredictionsRoute: typeof PredictionsRoute
+  SqlQueriesRoute: typeof SqlQueriesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sql-queries': {
+      id: '/sql-queries'
+      path: '/sql-queries'
+      fullPath: '/sql-queries'
+      preLoaderRoute: typeof SqlQueriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/predictions': {
       id: '/predictions'
       path: '/predictions'
@@ -156,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PatientsRoute: PatientsRoute,
   PredictionsRoute: PredictionsRoute,
+  SqlQueriesRoute: SqlQueriesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
