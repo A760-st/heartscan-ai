@@ -176,6 +176,13 @@
   .gradient-hero {
     background: var(--gradient-hero);
   }
+  .text-gradient-hero {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }

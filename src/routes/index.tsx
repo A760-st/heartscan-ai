@@ -49,7 +49,7 @@ function Landing() {
           </span>
           <h1 className="mt-5 text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.05]">
             ECG-Based Heart Disease<br />
-            <span className="bg-clip-text text-transparent gradient-hero">Prediction System</span>
+            <span className="text-gradient-hero">Prediction System</span>
           </h1>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
             A complete healthcare platform with patient records, ECG analytics, AI predictions and a live <strong className="text-foreground">MySQL query playground</strong> showcasing every database operation on the dashboard.
