@@ -1,4 +1,4 @@
-services:
+﻿services:
   - type: web
     name: cardiopredict
     runtime: node
@@ -7,13 +7,13 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 20
-      - key: VITE_GEMINI_API_KEY
-        sync: false
-      - key: VITE_FIREBASE_API_KEY
-        sync: false
-      - key: VITE_SUPABASE_URL
-        sync: false
-      - key: VITE_SUPABASE_ANON_KEY
-        sync: false
       - key: NODE_ENV
         value: production
+      - key: VITE_GEMINI_API_KEY
+        value: AIzaSyDPkF80VZ81n6THDNb1CcttoENKeowQciA
+      - key: VITE_FIREBASE_API_KEY
+        value: AIzaSyBF_oyOxtJ4Uc44zwiWQ9muFeKtp9Q-Ipg
+      - key: VITE_SUPABASE_URL
+        value: https://cdhcdudmlwmxvqqwtbgl.supabase.co
+      - key: VITE_SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkaGNkdWRtbHdteHZxcXd0YmdsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5NzY2OTcsImV4cCI6MjA5NDU1MjY5N30.fzrfztuZkpNcDkdfWJuX2miSs30mWx2wsphXs7l0V5c
