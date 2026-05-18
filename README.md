@@ -271,7 +271,7 @@ This project demonstrates the following database concepts:
 
 ## 👨‍💻 Author
 
-**Mahalasa** — DBMS Academic Project  
+**Adithya,Anusha,Lakshmi,Anjali** — DBMS Academic Project  
 Built with ❤️ using React, TypeScript, Gemini AI & Supabase
 
 ---
